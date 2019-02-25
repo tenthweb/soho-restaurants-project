@@ -47,17 +47,6 @@ class Trie:
 
 
     
-    def travel(self):
-        current_node = self.root
-        while current_node.children:
-            print(current_node.children.keys())
-            choice = input("Which letter would you like to follow? ")
-            if choice in current_node.children.keys():
-                current_node = current_node.children[choice]
-            else:
-                print("Sorry, try another letter!")
-
-        print("end of word!")
 
 
     def search(self, term):
@@ -152,7 +141,7 @@ class Trie:
 
                 else:       
                         
-                    # go back to lowest fork and delete the node in 'word' after that point
+                    # go back to lowest fork and pop the node in 'word' after that point
 
                     count_2 = 0
 
@@ -181,17 +170,6 @@ class Trie:
 
                         # if we reach the last fork, delete the node corresponding to the next letter in the word
                                        
-                            
-
-
-
-
-
- #   def iterate(self):
-        
-
-
-
 
 
     def travel_2(self):
@@ -204,6 +182,8 @@ class Trie:
                 
                 break
         return word
+
+    # return all the words in the trie
 
     def run_through_nodes(self):
 
@@ -237,6 +217,8 @@ class Trie:
 
         return suffix
 
+    # return all the words that stem from a given node.
+
     def run_through_nodes_2(self, prefix):
 
         list_of_words = []
@@ -250,9 +232,6 @@ class Trie:
             if letter in top_node.children:
                 top_node = top_node.children[letter]
 
-        
-
-
         while top_node.children:
             
             suffix = self.travel_based_on_prefix(prefix)
@@ -262,14 +241,17 @@ class Trie:
                 break
 
             list_of_words.append(word)
-            
-            
             self.delete_word(word)
             
-        
         self.add_word_list(list_of_words)
 
         return list_of_words
+    
+
+    def add_word_list(self, word_list):
+        for word in word_list:
+
+            self.add_word(word)
 
 
 
@@ -314,8 +296,16 @@ class Trie:
             
 
             
-    def add_word_list(self, word_list):
-        for word in word_list:
+##    def travel(self):
+##        current_node = self.root
+##        while current_node.children:
+##            print(current_node.children.keys())
+##            choice = input("Which letter would you like to follow? ")
+##            if choice in current_node.children.keys():
+##                current_node = current_node.children[choice]
+##            else:
+##                print("Sorry, try another letter!")
+##
+##        print("end of word!")
 
-            self.add_word(word)
 
